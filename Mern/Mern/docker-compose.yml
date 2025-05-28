@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  db:
+    image: mongo
+    container_name: merndb
+    ports: 
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: .
+    container_name: mern-backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules  # <-- Evita que node_modules del host sobrescriba el container
+    environment:
+      - PORT=4000
+      - MONGODB_URI=mongodb://db:27017/mernapp
+
+volumes:
+  mongo-data:
