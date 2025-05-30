@@ -5,14 +5,12 @@ pipeline {
    nodejs 'NodeJS_18'     }
     
     environment {
-        // Variables de entorno si las necesitas
         NODE_ENV = 'test'
     }
     
     stages {
         stage('Checkout') {
             steps {
-                // Tu código de checkout aquí
                 echo 'Descargando código fuente...'
             }
         }
@@ -23,7 +21,6 @@ pipeline {
                     echo 'Instalando dependencias del backend...'
                     bat 'npm install'
                     
-                    // Verificar que Jest esté instalado
                     bat 'npm list jest || echo "Jest no encontrado en dependencias"'
                 }
             }
@@ -32,7 +29,6 @@ pipeline {
         stage('Instalar dependencias frontend') {
             steps {
                 script {
-                    // Verificar múltiples ubicaciones posibles del frontend
                     def frontendPaths = [
                         'Mern/Mern/client',
                         'client',
