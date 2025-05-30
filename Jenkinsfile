@@ -2,8 +2,7 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'NodeJS' // Asegúrate de que el nombre coincida con tu configuración de Jenkins
-    }
+   nodejs 'NodeJS_18'     }
     
     environment {
         // Variables de entorno si las necesitas
